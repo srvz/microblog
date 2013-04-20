@@ -3,7 +3,7 @@ from flask import render_template, flash, redirect, url_for, request, g
 from flask.ext.login import login_user, logout_user, current_user, login_required
 from app import app, db, lm, oid
 from forms import LoginForm
-from models import Users, ROLE_USER, ROLE_ADMIN
+from models import User, ROLE_USER, ROLE_ADMIN
 
 
 @app.route('/')
@@ -40,6 +40,12 @@ def login():
                            title='Sign In',
                            form=form,
                            providers=app.config['OPENID_PROVIDERS'])
+
+
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('index'))
 
 
 @app.before_request
