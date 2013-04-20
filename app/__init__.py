@@ -15,4 +15,5 @@ from config import basedir
 
 lm = LoginManager()
 lm.setup_app(app)
+lm.login_view = 'login'
 oid = OpenID(app, os.path.join(basedir, 'tmp'))
